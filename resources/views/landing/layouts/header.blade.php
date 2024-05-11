@@ -16,8 +16,12 @@
             </ul>
         </nav><!-- .navbar -->
 
-        <a class="btn-primary" href="{{ route('login') }}">Sign Up | Login</a>
-        <a class="btn-danger" href="{{ route('logout') }}">Logout</a>
+        @guest
+            <a class="btn-book-a-table" href="{{ route('login') }}">Sign Up | Login</a>
+        @endguest
+        @auth
+            <a class="btn-book-a-table" href="{{ route('logout') }}">Logout</a>
+        @endauth
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 

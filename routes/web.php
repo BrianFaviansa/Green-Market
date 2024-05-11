@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\DashboardUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,19 @@ use App\Http\Controllers\DashboardAdminController;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
-Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware('guest');
-Route::post('/register', [AuthController::class, 'store'])->name('store.user')->middleware('guest');
-Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::class, 'authenticate'])->middleware('guest');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::get('/dashboard/admin', [DashboardAdminController::class, 'index'])->name('dashboard.admin')->middleware('admin');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'store'])->name('store.user');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate']);
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+    Route::get('/dashboard/user', [DashboardUserController::class, 'index'])->name('user.dashboard')->middleware('auth');
+});
+
+Route::group(['middleware' => 'admin'], function () {
+    Route::get('/dashboard/admin', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
+});

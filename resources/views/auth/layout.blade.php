@@ -47,10 +47,6 @@
     <div>
         @yield('content')
     </div>
-    <!-- ======= Footer ======= -->
-    @include('landing.layouts.footer')
-    <!-- End Footer -->
-
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 

@@ -1,5 +1,5 @@
 @extends('auth.layout')
-<div class="d-flex align-items-center h-75 py-4 bg-body-tertiary">
+<div class="d-flex align-items-center h-100 py-4 bg-body-tertiary">
     <main class="form-signin m-auto col-lg-4">
         <form>
 

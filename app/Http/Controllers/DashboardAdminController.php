@@ -20,4 +20,12 @@ class DashboardAdminController extends Controller
 
         return view('dashboard.admin.index', compact('user', 'users', 'products', 'orders', 'categories'));
     }
+
+    public function customers()
+    {
+        $customers = User::where('is_admin', 0)->get();
+        $user = auth()->user();
+
+        return view('dashboard.admin.customers.index', compact('user', 'customers'));
+    }
 }

@@ -34,4 +34,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/dashboard/admin', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/dashboard/admin/customers', [DashboardAdminController::class, 'customers'])->name('admin.customers');
 });

@@ -14,7 +14,7 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active d-flex flex-row my-3 justify-content-center">
         <img class="img-fluid img rounded-circle" style="height: 80px;"
-            src="img/undraw_profile.svg"
+            src="{{ asset('dashboard/img/undraw_profile.svg') }}"
             alt="">
     </li>
     <p class="text-center text-white">Hello, {{ $user->name }}</p>
@@ -30,7 +30,7 @@
         </a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin.dashboard') }}">
+        <a class="nav-link" href="{{ route('admin.customers') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Customers</span>
         </a>

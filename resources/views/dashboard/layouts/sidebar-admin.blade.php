@@ -38,7 +38,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-list"></i>
-            <span>Category</span>
+            <span>Categories</span>
         </a>
     </li>
     <li class="nav-item active">

@@ -19,7 +19,7 @@
                 <input type="password" class="form-control" id="password">
             </div>
 
-            <button class="btn btn-success w-100 py-2" type="submit">Register</button>
+            <button class="btn btn-success rounded-pill w-100 py-2" type="submit">Register</button>
             <p class="mt-3 mb-3 text-body-secondary">Already a member? <a href="{{ route('login') }}">Sign In</a></p>
 
         </form>

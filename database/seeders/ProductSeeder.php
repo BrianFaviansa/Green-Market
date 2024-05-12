@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ProductSeeder extends Seeder
 {
@@ -42,5 +43,9 @@ class ProductSeeder extends Seeder
                 'product_image' => 'terong.png',
             ],
         ];
+
+        foreach ($products as $product) {
+            Product::create($product);
+        }
     }
 }

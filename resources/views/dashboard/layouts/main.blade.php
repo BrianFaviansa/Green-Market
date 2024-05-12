@@ -14,15 +14,13 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ $user->name }}</span>
-                    <img class="img-profile rounded-circle"
-                        src="img/undraw_profile.svg">
+                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                 </a>
                 <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="userDropdown">
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="#">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Profile
@@ -62,11 +60,13 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Earnings (Monthly)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                    Total Customers</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ $users }}
+                                </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -80,11 +80,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Earnings (Annual)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                    Total Categories</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $categories }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                <i class="fas fa-list fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -97,23 +97,17 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Products
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="progress progress-sm mr-2">
-                                            <div class="progress-bar bg-info" role="progressbar"
-                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $products }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -127,11 +121,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Pending Requests</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                    Total Orders</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $orders }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                <i class="fas fa-receipt fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -140,6 +134,6 @@
         </div>
 
 
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 
-</div>
+    </div>

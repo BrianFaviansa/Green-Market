@@ -51,27 +51,37 @@
     <script>
         $(document).ready(function() {
             $('.add-to-cart').click(function(e) {
-                e.preventDefault(); // Mencegah submit form secara default
+                e.preventDefault();
 
-                var productId = $(this).data('product-id');
-                var quantity = 1; // Atur kuantitas default sebagai 1
+                let productId = $(this).data('product-id');
+                let quantity = 1;
 
-                // Kirim permintaan AJAX
                 $.ajax({
-                    url: '{{ route('cart.add') }}', // Ganti dengan rute yang sesuai
+                    url: '{{ route('cart.add') }}',
                     type: 'POST',
                     data: {
                         product_id: productId,
                         quantity: quantity,
-                        _token: '{{ csrf_token() }}' // Tambahkan token CSRF
+                        _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        // Tindakan setelah permintaan AJAX berhasil
                         console.log(response.message);
-                        // Lakukan tindakan lain jika diperlukan, seperti memperbarui tampilan cart
+                        const alertElement = $(
+                            '<div class="alert alert-success alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">' +
+                            response.message +
+                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                            '</div>');
+
+                        // Menambahkan alert ke body
+                        $('body').append(alertElement);
+
+                        // Otomatis menutup alert setelah 3 detik
+                        setTimeout(function() {
+                            alertElement.alert('close');
+                        }, 3000);
                     },
                     error: function(xhr) {
-                        // Tindakan jika terjadi kesalahan
+
                         console.log(xhr.responseText);
                     }
                 });

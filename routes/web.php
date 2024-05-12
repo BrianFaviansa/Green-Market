@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardUserController;
@@ -36,4 +37,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/dashboard/admin', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/dashboard/admin/customers', [DashboardAdminController::class, 'customers'])->name('admin.customers');
+
+    Route::get('/dashboard/admin/categories', [DashboardAdminController::class, 'categories'])->name('admin.categories');
+    Route::post('/dashboard/admin/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
+    Route::put('/dashboard/admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
+    Route::delete('/dashboard/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 });

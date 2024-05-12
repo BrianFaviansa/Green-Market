@@ -36,7 +36,7 @@
         </a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin.dashboard') }}">
+        <a class="nav-link" href="{{ route('admin.categories') }}">
             <i class="fas fa-fw fa-list"></i>
             <span>Categories</span>
         </a>

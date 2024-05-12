@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app-admin')
+@extends('dashboard.layouts.app-admin-crud')
 
 @section('content')
     <!-- Page Heading -->
@@ -7,7 +7,7 @@
     </div>
 
     <!-- Content Row -->
-    <table class="table table-hover table-bordered border-primary">
+    <table class="table table-bordered border-primary">
         <thead class="table-primary">
             <tr>
                 <th scope="col">Number</th>
@@ -18,7 +18,7 @@
                 <th scope="col">Joining Date</th>
             </tr>
         </thead>
-        <tbody class="table-group-divider">
+        <tbody class="table-group-divider table-hover">
             @foreach ($customers as $customer)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>

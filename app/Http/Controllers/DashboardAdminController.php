@@ -28,4 +28,12 @@ class DashboardAdminController extends Controller
 
         return view('dashboard.admin.customers.index', compact('user', 'customers'));
     }
+
+    public function categories()
+    {
+        $categories = Category::all();
+        $user = auth()->user();
+
+        return view('dashboard.admin.categories.index', compact('user', 'categories'));
+    }
 }

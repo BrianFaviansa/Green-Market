@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function currentOrder()
+    {
+        return $this->hasOne(Order::class)->whereStatus('pending');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

@@ -1,4 +1,4 @@
-<footer id="footer" class="footer">
+<footer id="contact" class="footer mt-20">
 
     <div class="container">
         <div class="row gy-3">

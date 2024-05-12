@@ -36,6 +36,10 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('landing/assets/css/main.css') }}" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -88,8 +92,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('landing/assets/js/main.js') }}"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

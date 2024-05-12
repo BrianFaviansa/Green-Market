@@ -1,4 +1,4 @@
-<section id="menu" class="menu">
+<section id="products" class="menu">
     <div class="container" data-aos="fade-up">
 
         <div class="section-header">
@@ -51,25 +51,27 @@
     <script>
         $(document).ready(function() {
             $('.add-to-cart').click(function(e) {
-                e.preventDefault();
-                var productId = $(this).data('product-id');
-                var quantity = 1; // Atur kuantitas default menjadi 1
+                e.preventDefault(); // Mencegah submit form secara default
 
-                // Kirim permintaan AJAX ke server
+                var productId = $(this).data('product-id');
+                var quantity = 1; // Atur kuantitas default sebagai 1
+
+                // Kirim permintaan AJAX
                 $.ajax({
-                    url: "{{ route('cart.add') }}",
-                    type: "POST",
+                    url: '{{ route('cart.add') }}', // Ganti dengan rute yang sesuai
+                    type: 'POST',
                     data: {
                         product_id: productId,
                         quantity: quantity,
-                        _token: "{{ csrf_token() }}"
+                        _token: '{{ csrf_token() }}' // Tambahkan token CSRF
                     },
                     success: function(response) {
-                        // Lakukan tindakan setelah berhasil menambahkan ke cart
+                        // Tindakan setelah permintaan AJAX berhasil
                         console.log(response.message);
+                        // Lakukan tindakan lain jika diperlukan, seperti memperbarui tampilan cart
                     },
                     error: function(xhr) {
-                        // Lakukan tindakan jika terjadi kesalahan
+                        // Tindakan jika terjadi kesalahan
                         console.log(xhr.responseText);
                     }
                 });

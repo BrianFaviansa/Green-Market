@@ -1,4 +1,4 @@
-<section id="hero" class="hero d-flex align-items-center section-bg">
+<section id="home" class="hero d-flex align-items-center section-bg">
     <div class="container">
         <div class="row justify-content-between gy-5">
             <div

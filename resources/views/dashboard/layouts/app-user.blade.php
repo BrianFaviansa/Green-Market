@@ -27,7 +27,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('dashboard.layouts.sidebar-admin')
+        @include('dashboard.layouts.sidebar-user')
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

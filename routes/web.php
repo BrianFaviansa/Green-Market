@@ -31,10 +31,15 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
-    Route::get('/dashboard/user', [DashboardUserController::class, 'index'])->name('user.dashboard')->middleware('auth');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/dashboard/user', [DashboardUserController::class, 'index'])->name('user.dashboard');
+    Route::get('/dashboard/orders', [DashboardUserController::class, 'index'])->name('user.orders');
+
+    Route::get('/dashboard/user/carts', [CartController::class, 'index'])->name('user.carts');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('cart/add', [CartController::class, 'add'])->name('cart.add');
 });
 
 Route::group(['middleware' => 'admin'], function () {

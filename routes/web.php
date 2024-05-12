@@ -47,4 +47,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/dashboard/admin/products', [DashboardAdminController::class, 'products'])->name('admin.products');
     Route::post('/dashboard/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
     Route::put('/dashboard/admin/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
+
+    Route::get('/dashboard/admin/orders', [DashboardAdminController::class, 'orders'])->name('admin.orders');
 });

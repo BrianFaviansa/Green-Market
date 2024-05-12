@@ -45,4 +45,11 @@ class DashboardAdminController extends Controller
 
         return view('dashboard.admin.products.index', compact('user', 'products', 'categories'));
     }
+
+    public function orders() {
+        $orders = Order::with('user')->orderBy('created_at', 'desc')->get();
+        $user = auth()->user();
+
+        return view('dashboard.admin.orders.index', compact('user', 'orders'));
+    }
 }

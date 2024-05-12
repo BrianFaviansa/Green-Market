@@ -19,6 +19,11 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('dashboard/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
 </head>
 
 <body id="page-top">
@@ -74,11 +79,11 @@
         <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
 
         <!-- Page level plugins -->
-        <script src="{{ asset('dashboard/vendor/chart.js/Chart.min.js') }}"></script>
+        {{-- <script src="{{ asset('dashboard/vendor/chart.js/Chart.min.js') }}"></script> --}}
 
         <!-- Page level custom scripts -->
-        <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script>
-        <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script>
+        {{-- <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script> --}}
+        {{-- <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script> --}}
 
 </body>
 

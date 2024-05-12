@@ -21,4 +21,12 @@ class DashboardUserController extends Controller
 
         return view('dashboard.user.orders.index', compact('user'));
     }
+
+    public function cart()
+    {
+        $user = auth()->user();
+        $order = $user->currentOrder;
+
+        return view('dashboard.user.cart', compact('user', 'order'));
+    }
 }

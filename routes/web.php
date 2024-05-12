@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DashboardAdminController;
 
@@ -36,9 +37,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard/user', [DashboardUserController::class, 'index'])->name('user.dashboard');
     Route::get('/dashboard/orders', [DashboardUserController::class, 'index'])->name('user.orders');
 
-    Route::get('/dashboard/user/carts', [CartController::class, 'index'])->name('user.carts');
+    Route::get('/dashboard/user/cart', [DashboardUserController::class, 'cart'])->name('user.carts');
+    Route::post('order-detail/update', [OrderDetailController::class, 'update'])->name('order-detail.update');
 
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+    // Route::get('/carts', [CartController::class, 'index'])->name('cart.index');
     Route::post('cart/add', [CartController::class, 'add'])->name('cart.add');
 });
 

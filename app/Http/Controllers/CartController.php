@@ -10,10 +10,11 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
-        $order = $request->user()->currentOrder;
         $user = auth()->user();
-
-        return view('dashboard.user.cart', compact('user', 'order'));
+        if ($request->user()->currentOrder) {
+            $order = $request->user()->currentOrder;
+            return view('dashboard.user.cart', compact('user', 'order'));
+        }
     }
 
     public function add(Request $request)
@@ -36,12 +37,21 @@ class CartController extends Controller
         // Dapatkan produk berdasarkan product_id
         $product = Product::findOrFail($productId);
 
-        // Tambahkan item ke order detail
-        $orderDetail = $order->orderDetails()->create([
-            'product_id' => $productId,
-            'quantity' => $quantity,
-            'price' => $product->price, // Asumsikan field 'price' tersedia pada tabel 'products'
-        ]);
+        // Cek apakah produk sudah ada di dalam order detail
+        $existingOrderDetail = $order->orderDetails()->where('product_id', $productId)->first();
+
+        if ($existingOrderDetail) {
+            // Jika produk sudah ada, tambahkan kuantitas
+            $existingOrderDetail->quantity += $quantity;
+            $existingOrderDetail->save();
+        } else {
+            // Jika produk belum ada, tambahkan item ke order detail
+            $orderDetail = $order->orderDetails()->create([
+                'product_id' => $productId,
+                'quantity' => $quantity,
+                'price' => $product->price,
+            ]);
+        }
 
         // Hitung total harga order
         $totalPrice = $order->orderDetails()->sum(DB::raw('price * quantity'));
@@ -50,7 +60,7 @@ class CartController extends Controller
 
         return response()->json([
             'message' => 'Product added to cart successfully!',
-            'order_detail_id' => $orderDetail->id,
+            'order_detail_id' => $existingOrderDetail ? $existingOrderDetail->id : $orderDetail->id,
         ]);
     }
 }

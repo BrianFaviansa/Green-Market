@@ -72,10 +72,8 @@
                             '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
                             '</div>');
 
-                        // Menambahkan alert ke body
                         $('body').append(alertElement);
 
-                        // Otomatis menutup alert setelah 3 detik
                         setTimeout(function() {
                             alertElement.alert('close');
                         }, 3000);

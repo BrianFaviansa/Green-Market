@@ -23,7 +23,7 @@ class DashboardAdminController extends Controller
 
     public function customers()
     {
-        $customers = User::where('is_admin', 0)->get();
+        $customers = User::where('is_admin', 0)->orderBy('name')->get();
         $user = auth()->user();
 
         return view('dashboard.admin.customers.index', compact('user', 'customers'));
@@ -31,7 +31,7 @@ class DashboardAdminController extends Controller
 
     public function categories()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('category_name')->get();
         $user = auth()->user();
 
         return view('dashboard.admin.categories.index', compact('user', 'categories'));
@@ -39,9 +39,10 @@ class DashboardAdminController extends Controller
 
     public function products()
     {
-        $products = Product::with('category')->get();
+        $products = Product::with('category')->orderBy('category_id')->orderBy('product_name')->get();
+        $categories = Category::all();
         $user = auth()->user();
 
-        return view('dashboard.admin.products.index', compact('user', 'products'));
+        return view('dashboard.admin.products.index', compact('user', 'products', 'categories'));
     }
 }

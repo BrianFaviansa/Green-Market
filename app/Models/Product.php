@@ -9,6 +9,14 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'product_name',
+        'category_id',
+        'price',
+        'product_desc',
+        'product_image',
+    ];
+
     public function getPriceAttribute($value)
     {
         $value = (float) $value;

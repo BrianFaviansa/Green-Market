@@ -15,7 +15,7 @@
     @endif
 
     <!-- Content Row -->
-    <div class="table-responsive">
+    <div class="table-responsive mb-2">
         <table class="table table-hover">
             <thead class="table-primary text-center">
                 <tr>
@@ -41,12 +41,13 @@
                         <td class="align-middle">{{ $product->category->category_name }}</td>
                         <td class="align-middle">{{ $product->price }}</td>
                         <td class="align-middle">
-                            {{-- @include('dashboard.admin.products.modal-edit') --}}
-                            {{-- @include('dashboard.admin.products.modal-delete') --}}
+                            @include('dashboard.admin.products.modal-edit')
+                            @include('dashboard.admin.products.modal-delete')
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+
 @endsection

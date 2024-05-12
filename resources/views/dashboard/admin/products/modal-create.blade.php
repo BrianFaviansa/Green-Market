@@ -18,7 +18,7 @@
                     <div class="mb-3">
                         <div class="mb-3">
                             <label for="product_name" class="form-label">Name</label>
-                            <input type="text" name="product_name" class="form-control" id="product_name">
+                            <input type="text" name="product_name" class="form-control" id="product_name" required>
                         </div>
                         <div class="mb-3">
                             <label for="category_id" class="form-label">Category</label>
@@ -30,15 +30,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="product_image" class="form-label">Image</label>
-                            <input class="form-control" id="product_image" name="product_image" type="file">
+                            <input class="form-control" id="product_image" name="product_image" type="file" required>
                         </div>
                         <div class="mb-3">
                             <label for="product_desc" class="form-label">Description</label>
-                            <input type="text" name="product_desc" class="form-control" id="product_desc">
+                            <input type="text" name="product_desc" class="form-control" id="product_desc" required>
                         </div>
                         <div class="mb-3">
                             <label for="price" class="form-label">Price</label>
-                            <input type="text" name="price" class="form-control" id="price">
+                            <input type="text" name="price" class="form-control" id="price" required>
                         </div>
                     </div>
             </div>

@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategory{{ $product->id }}">
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteproduct{{ $product->id }}">
     Delete
 </button>
 
@@ -13,7 +13,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.categories.destroy', $product) }}" method="POST">
+                <form action="{{ route('admin.products.destroy', $product) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="mb-3">

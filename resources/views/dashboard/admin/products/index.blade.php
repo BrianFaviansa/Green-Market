@@ -13,6 +13,13 @@
             @include('dashboard.layouts.alert-success')
         </div>
     @endif
+    @if (session()->has('error'))
+        <div class="my-2">
+            @include('dashboard.layouts.alert-error')
+        </div>
+    @endif
+
+
 
     <!-- Content Row -->
     <div class="table-responsive mb-2">

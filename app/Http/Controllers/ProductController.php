@@ -12,6 +12,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validateData = $request->validate([
             'product_name' => 'required',
             'category_id' => 'required',
@@ -54,7 +55,7 @@ class ProductController extends Controller
         }
 
         $product->update($validateData);
-        
+
         return redirect()->route('admin.products')->with('success', 'Product updated successfully');
     }
 
@@ -63,6 +64,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('admin.products')->with('success', 'Product deleted successfully');
     }
 }

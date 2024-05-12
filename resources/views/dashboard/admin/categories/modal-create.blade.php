@@ -18,7 +18,7 @@
                     <div class="mb-3">
                         <div class="mb-3">
                             <label for="category_name" class="form-label">Category Name</label>
-                            <input type="text" name="category_name" class="form-control" id="category_name">
+                            <input type="text" name="category_name" class="form-control" id="category_name" required>
                         </div>
                     </div>
             </div>

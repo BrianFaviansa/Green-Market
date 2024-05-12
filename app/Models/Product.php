@@ -9,6 +9,13 @@ class Product extends Model
 {
     use HasFactory;
 
+    public function getPriceAttribute($value)
+    {
+        $value = (float) $value;
+        $isInteger = $value == floor($value);
+        return $isInteger ? (int) $value : $value;
+    }
+
     public function category() {
         return $this->belongsTo(Category::class);
     }

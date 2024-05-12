@@ -36,4 +36,12 @@ class DashboardAdminController extends Controller
 
         return view('dashboard.admin.categories.index', compact('user', 'categories'));
     }
+
+    public function products()
+    {
+        $products = Product::with('category')->get();
+        $user = auth()->user();
+
+        return view('dashboard.admin.products.index', compact('user', 'products'));
+    }
 }

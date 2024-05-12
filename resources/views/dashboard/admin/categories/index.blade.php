@@ -15,25 +15,27 @@
     @endif
 
     <!-- Content Row -->
-    <table class="table table-hover">
-        <thead class="table-primary">
-            <tr>
-                <th scope="col">Number</th>
-                <th scope="col">Category Name</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody class="">
-            @foreach ($categories as $category)
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-primary text-center">
                 <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $category->category_name }}</td>
-                    <td>
-                        @include('dashboard.admin.categories.modal-edit')
-                        @include('dashboard.admin.categories.modal-delete')
-                    </td>
+                    <th scope="col">Number</th>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Action</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="text-center">
+                @foreach ($categories as $category)
+                    <tr>
+                        <th class="" scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $category->category_name }}</td>
+                        <td>
+                            @include('dashboard.admin.categories.modal-edit')
+                            @include('dashboard.admin.categories.modal-delete')
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection

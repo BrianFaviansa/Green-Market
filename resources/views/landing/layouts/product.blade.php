@@ -2,121 +2,78 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-            <h2>Our Menu</h2>
-            <p>Check Our <span>Yummy Menu</span></p>
+            <h2>Our Products</h2>
+            <p>Check Our <span>Best Products</span></p>
         </div>
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-            <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">
-                    <h4>Starters</h4>
-                </a>
-            </li><!-- End tab nav item -->
-
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">
-                    <h4>Breakfast</h4>
-                </a><!-- End tab nav item -->
-            </li>
+            @foreach ($categories as $key => $category)
+                <li class="nav-item">
+                    <a class="nav-link @if ($key === 0) active show @endif" data-bs-toggle="tab"
+                        data-bs-target="#menu-{{ $category->category_name }}">
+                        <h4>{{ $category->category_name }}</h4>
+                    </a>
+                </li>
+            @endforeach
         </ul>
 
         <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-
-            <div class="tab-pane fade active show" id="menu-starters">
-
-                <div class="tab-header text-center">
-                    <p>Menu</p>
-                    <h3>Starters</h3>
-                </div>
-
-                <div class="row gy-5">
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img
-                                src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $5.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img
-                                src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img
-                                src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                </div>
-            </div><!-- End Starter Menu Content -->
-
-            <div class="tab-pane fade" id="menu-breakfast">
-
-                <div class="tab-header text-center">
-                    <p>Menu</p>
-                    <h3>Breakfast</h3>
-                </div>
-
-                <div class="row gy-5">
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img
-                                src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $5.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img
-                                src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img
-                                src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            $8.95
-                        </p>
-                    </div><!-- Menu Item -->
-                </div>
-            </div><!-- End Breakfast Menu Content -->
+            @foreach ($categories as $key => $category)
+                <div class="tab-pane fade @if ($key === 0) show active @endif"
+                    id="menu-{{ $category->category_name }}">
+                    <div class="tab-header text-center">
+                        <p>Products</p>
+                        <h3>{{ $category->category_name }}</h3>
+                    </div>
+                    <div class="row gy-5">
+                        @foreach ($category->products as $product)
+                            <div class="col-lg-4 menu-item">
+                                <a href="" class="glightbox"><img
+                                        src="{{ asset('storage/product_images/' . $product->product_image) }}"
+                                        class="menu-img img-fluid" alt=""></a>
+                                <h4 class="text-xl">{{ $product->product_name }}</h4>
+                                <p class="text-lg font-weight-normal"> {{ $product->product_desc }} </p>
+                                <p class="price"> Rp {{ $product->price }} </p>
+                                @auth
+                                    @if (Auth::user()->is_admin == 0)
+                                        <button class="add-to-cart btn btn-success"
+                                            data-product-id="{{ $product->id }}">Add to Cart</button>
+                                    @endif
+                                @endauth
+                            </div><!-- Menu Item -->
+                        @endforeach
+                    </div>
+                </div><!-- End Tab Content -->
+            @endforeach
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.add-to-cart').click(function(e) {
+                e.preventDefault();
+                var productId = $(this).data('product-id');
+                var quantity = 1; // Atur kuantitas default menjadi 1
+
+                // Kirim permintaan AJAX ke server
+                $.ajax({
+                    url: "{{ route('cart.add') }}",
+                    type: "POST",
+                    data: {
+                        product_id: productId,
+                        quantity: quantity,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        // Lakukan tindakan setelah berhasil menambahkan ke cart
+                        console.log(response.message);
+                    },
+                    error: function(xhr) {
+                        // Lakukan tindakan jika terjadi kesalahan
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </section>

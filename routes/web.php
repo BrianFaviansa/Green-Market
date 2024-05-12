@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
@@ -32,6 +33,8 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
     Route::get('/dashboard/user', [DashboardUserController::class, 'index'])->name('user.dashboard')->middleware('auth');
+
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 });
 
 Route::group(['middleware' => 'admin'], function () {

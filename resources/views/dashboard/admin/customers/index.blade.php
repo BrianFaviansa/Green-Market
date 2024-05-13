@@ -25,8 +25,20 @@
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $customer->name }}</td>
                         <td>{{ $customer->email }}</td>
-                        <td>{{ $customer->phone_number }}</td>
-                        <td>{{ $customer->home_address }}</td>
+                        <td>
+                            @if ($customer->phone_number)
+                                {{ $customer->phone_number }}
+                            @else
+                                -
+                            @endif
+                        </td>
+                        <td>
+                            @if ($customer->home_address)
+                                {{ $customer->home_address }}
+                            @else
+                                -
+                            @endif
+                        </td>
                         <td>{{ $customer->created_at->format('d F Y') }}</td>
                     </tr>
                 @endforeach

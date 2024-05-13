@@ -60,8 +60,34 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
+
+        {{-- Profile modal --}}
+        @include('dashboard.layouts.modal-profile')
+
         <!-- Logout Modal-->
         @include('dashboard.layouts.modal-logout')
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        @if (session('success_message'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '{{ session('success_message') }}',
+                });
+            </script>
+        @endif
+
+        @if (session('error_message'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: '{{ session('error_message') }}',
+                });
+            </script>
+        @endif
 
         <!-- Bootstrap core JavaScript-->
         <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>

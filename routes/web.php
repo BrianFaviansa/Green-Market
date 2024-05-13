@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('cart/add', [CartController::class, 'add'])->name('cart.add');
     Route::post('cart/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('checkout', [OrderController::class, 'checkout'])->name('checkout');
+
+    Route::put('/user/update/{user}', [UserController::class, 'update'])->name('profile.update');
 });
 
 Route::group(['middleware' => 'admin'], function () {

@@ -6,7 +6,6 @@
 
 - PHP >= 8.1
 - Composer
-- Node.js
 - MySQL + phpmyadmin
 
 ### Installation

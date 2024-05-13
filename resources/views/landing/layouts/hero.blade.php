@@ -4,7 +4,7 @@
             <div
                 class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
                 <h2 data-aos="fade-up">Welcome To<br>Green Market</h2>
-                <p data-aos="fade-up" data-aos-delay="100">Fresh, Healthy, Trusted. Find the Best Choice at Green Market!
+                <p data-aos="fade-up" data-aos-delay="100">Fresh, Healthy, Trusted: Find the Best Choice at Green Market!
                 </p>
                 <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                     @guest

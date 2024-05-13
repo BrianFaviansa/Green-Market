@@ -3,7 +3,7 @@
 
         <div class="section-header">
             <h2>About Us</h2>
-            <p>Learn More <span>About Us</span></p>
+            <p>Learn More <span class="text-success">About Us</span></p>
         </div>
 
         <div class="row gy-4">
@@ -17,24 +17,15 @@
             <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
                 <div class="content ps-0 ps-lg-5">
                     <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore
-                        magna aliqua.
+                        GreenMarket is your go-to online marketplace for fresh, locally sourced fruits and vegetables, delivering convenience and quality straight to your doorstep. Our mission is treefold:
                     </p>
                     <ul>
-                        <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat.</li>
-                        <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in
-                            voluptate velit.</li>
-                        <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate trideta
-                            storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                        <li><i class="bi bi-check2-all"></i> To ensure access to the freshest produce while supporting local farmers and promoting sustainable agricultural practices.</li>
+                        <li><i class="bi bi-check2-all"></i> To prioritize customer satisfaction through timely delivery and top-notch service.</li>
+                        <li><i class="bi bi-check2-all"></i> To foster community engagement and environmental stewardship.</li>
                     </ul>
                     <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident
+                        Experience the freshness and convenience of GreenMarket today! Join us in our mission to make healthy living accessible and sustainable for everyone.
                     </p>
 
                     <div class="position-relative mt-4">

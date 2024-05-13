@@ -26,7 +26,7 @@ class AuthController extends Controller
                 return redirect()->route('admin.dashboard', compact('user'));
             }
             if (Auth::user()->is_admin == 0) {
-                return redirect()->route('user.dashboard', compact('user'));
+                return redirect()->route('user.carts', compact('user'));
             }
         } else {
             return redirect('login')->with('error', 'Incorrect Email or Password!');

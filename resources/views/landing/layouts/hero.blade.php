@@ -14,7 +14,7 @@
                         @if (Auth::user()->is_admin == 1)
                             <a class="btn-book-a-table" href="{{ route('admin.dashboard') }}">Dashboard</a>
                         @else
-                            <a class="btn-book-a-table" href="{{ route('user.dashboard') }}">Dashboard</a>
+                            <a class="btn-book-a-table" href="{{ route('user.carts') }}">Dashboard</a>
                         @endif
                     @endauth
                 </div>

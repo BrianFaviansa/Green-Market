@@ -8,6 +8,7 @@
     <title>{{ config('app.name') }}</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
     {{-- bootstrap cdn --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -36,6 +37,8 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('landing/assets/css/main.css') }}" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="">
@@ -54,14 +57,14 @@
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('landing/assets/vendor/aos/aos.js') }}"></script>
+    <script script src="{{ asset('landing/assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('landing/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('landing/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('landing/assets/vendor/php-email-form/validate.js') }}"></script>
-
     <!-- Template Main JS File -->
     <script src="{{ asset('landing/assets/js/main.js') }}"></script>
+
 
 </body>
 

@@ -11,7 +11,7 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-10">
 
-                    @if ($order)
+                    @if ($order && $order->orderDetails->isNotEmpty())
                         @foreach ($order->orderDetails as $od)
                             <div class="card rounded-3 mb-4">
                                 <div class="card-body p-4">
@@ -21,31 +21,21 @@
                                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                                         </div>
                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <p class="lead fw-normal mb-2">{{ $od->product->product_name }}</p>
-                                            <p><span class="text-muted"> </p>
+                                            <p class="lead fw-bold mb-2">{{ $od->product->product_name }}</p>
+                                            <p><span class="text-muted">{{ $od->product->product_desc }}</p>
+                                            <p class="">Rp {{ $od->price }}</p>
                                         </div>
-                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-
-                                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-
-                                            <input id="quantity" min="0" name="quantity" value="{{ $od->quantity }}"
-                                                type="number" class="form-control form-control-sm"
-                                                data-price="{{ $od->price }}"
-                                                data-order-detail-id="{{ $od->id }}" />
-
-                                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
+                                        <div class="col-md-3 col-lg-3 col-xl-2 d-inline-flex">
+                                            <label for="quantity" class="form-label">Quantity :</label>
+                                            <p class="ml-2">{{ $od->quantity }}</p>
                                         </div>
                                         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <h5 class="mb-0">Rp {{ $od->price }}</h5>
+                                            <h5 class="mb-0">Rp {{ $od->price * $od->quantity }}</h5>
                                         </div>
-                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                            <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                        <div class="col-md-1 col-lg-1 col-xl-1 text-center">
+                                            <a href="#!" class="text-danger delete-product"
+                                                data-product-id="{{ $od->product->id }}"><i
+                                                    class="fas fa-trash fa-lg"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -54,8 +44,9 @@
 
                         <div class="card">
                             <div class="card-body">
-                                <button type="button" data-mdb-button-init data-mdb-ripple-init
-                                    class="btn btn-primary btn-block btn-lg">Proceed to Pay</button>
+                                <p class="text-center fw-bold fs-3">Total Price : {{ $order->total_price }}</p>
+                                <button type="button" class="btn btn-primary btn-block btn-lg"
+                                    id="checkout-btn">Checkout</button>
                             </div>
                         </div>
                     @else
@@ -68,30 +59,87 @@
     </section>
 
     <script>
-        $(document).ready(function() {
-            $('input[name="quantity"]').on('input', function() {
-                var quantity = $(this).val();
-                var price = $(this).data('price');
-                var orderDetailId = $(this).data('order-detail-id');
+        $('.delete-product').click(function(e) {
+            e.preventDefault();
+            var productId = $(this).data('product-id');
 
-                $.ajax({
-                    url: '{{ route('order-detail.update') }}', // Ganti dengan rute yang sesuai
-                    type: 'POST',
-                    data: {
-                        order_detail_id: orderDetailId,
-                        quantity: quantity,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        // Perbarui harga
-                        console.log(response.message);
-                        var cardBody = $(this).closest('.card-body');
-                        cardBody.find('.mb-0').text('Rp ' + response.total_price.toFixed(2));
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseText);
-                    }
-                });
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to remove this product from your cart.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, remove it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '{{ route('cart.remove') }}',
+                        type: 'POST',
+                        data: {
+                            product_id: productId,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            console.log(response.message);
+                            const alertElement = $(
+                                '<div class="alert alert-success alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">' +
+                                response.message +
+                                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                                '</div>');
+
+                            $('body').append(alertElement);
+
+                            setTimeout(function() {
+                                alertElement.alert('close');
+                                location.reload();
+                            }, 1500);
+                        },
+                        error: function(xhr) {
+                            console.log(xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+
+        $('#checkout-btn').click(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to checkout your cart.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, checkout!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '{{ route('checkout') }}',
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                position: 'middle',
+                                icon: 'success',
+                                title: 'Checkout Success!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        },
+                        error: function(xhr) {
+                            console.log(xhr.responseText);
+                        }
+                    });
+                }
             });
         });
     </script>

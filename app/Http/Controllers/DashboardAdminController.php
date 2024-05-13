@@ -16,7 +16,7 @@ class DashboardAdminController extends Controller
         $users = User::where('is_admin', 0)->count();
         $products = Product::count();
         $categories = Category::count();
-        $orders = Order::count();
+        $orders = Order::where('status', 'done')->count();
 
         return view('dashboard.admin.index', compact('user', 'users', 'products', 'orders', 'categories'));
     }
@@ -47,7 +47,7 @@ class DashboardAdminController extends Controller
     }
 
     public function orders() {
-        $orders = Order::with('user')->orderBy('created_at', 'desc')->get();
+        $orders = Order::with('user')->where('status', 'done')->orderBy('created_at', 'desc')->get();
         $user = auth()->user();
 
         return view('dashboard.admin.orders.index', compact('user', 'orders'));

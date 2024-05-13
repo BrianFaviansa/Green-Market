@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,14 +36,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/dashboard/user', [DashboardUserController::class, 'index'])->name('user.dashboard');
-    Route::get('/dashboard/orders', [DashboardUserController::class, 'index'])->name('user.orders');
+    Route::get('/dashboard/orders', [DashboardUserController::class, 'orders'])->name('user.orders');
 
     Route::get('/dashboard/user/cart', [DashboardUserController::class, 'cart'])->name('user.carts');
     Route::post('order-detail/update', [OrderDetailController::class, 'update'])->name('order-detail.update');
 
 
-    // Route::get('/carts', [CartController::class, 'index'])->name('cart.index');
     Route::post('cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('checkout', [OrderController::class, 'checkout'])->name('checkout');
 });
 
 Route::group(['middleware' => 'admin'], function () {

@@ -1,4 +1,10 @@
 @extends('auth.layout')
+@if (session()->has('success'))
+    <div class="alert-success alert-dismissible alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+        {{ session()->get('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 <div class="d-flex align-items-center h-100 py-4 bg-body-tertiary">
     <main class="form-signin m-auto col-lg-4">
         <form method="POST" action="{{ route('login') }}">

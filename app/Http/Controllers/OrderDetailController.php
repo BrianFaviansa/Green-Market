@@ -54,21 +54,7 @@ class OrderDetailController extends Controller
 
     public function update(Request $request)
     {
-        $orderDetailId = $request->input('order_detail_id');
-        $quantity = $request->input('quantity');
-
-        // Perbarui kuantitas order_detail
-        $orderDetail = OrderDetail::findOrFail($orderDetailId);
-        $orderDetail->quantity = $quantity;
-        $orderDetail->save();
-
-        // Hitung total harga order
-        $order = $orderDetail->order;
-        $totalPrice = $order->details()->sum(DB::raw('price * quantity'));
-        $order->total_price = $totalPrice;
-        $order->save();
-
-        return response()->json(['success' => true, 'total_price' => $totalPrice]);
+        
     }
 
 

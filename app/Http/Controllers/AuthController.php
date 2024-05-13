@@ -41,14 +41,16 @@ class AuthController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:5', 'confirmed'],
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'min:3'],
         ]);
+
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
         User::create($validatedData);
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil!');
+        return redirect()->route('login')->with('success', 'Register success, please login');
     }
 
     public function logout(Request $request)

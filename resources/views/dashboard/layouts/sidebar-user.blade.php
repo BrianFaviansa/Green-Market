@@ -22,9 +22,9 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('user.dashboard') }}">
-            <i class="fas fa-fw fa-chart-line"></i>
-            <span>Dashboard</span>
+        <a class="nav-link" href="{{ route('landing') }}">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Home</span>
         </a>
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('user.carts') }}">

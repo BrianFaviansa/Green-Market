@@ -76,7 +76,7 @@
 
                         setTimeout(function() {
                             alertElement.alert('close');
-                        }, 3000);
+                        }, 1500);
                     },
                     error: function(xhr) {
 

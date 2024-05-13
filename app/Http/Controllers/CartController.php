@@ -22,30 +22,22 @@ class CartController extends Controller
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity');
 
-        // Lakukan validasi jika diperlukan
-
-        // Dapatkan instance order untuk pengguna saat ini
         $order = $request->user()->currentOrder;
 
-        // Jika belum ada order, buat order baru
         if (!$order) {
             $order = $request->user()->orders()->create([
                 'status' => 'pending',
             ]);
         }
 
-        // Dapatkan produk berdasarkan product_id
         $product = Product::findOrFail($productId);
 
-        // Cek apakah produk sudah ada di dalam order detail
         $existingOrderDetail = $order->orderDetails()->where('product_id', $productId)->first();
 
         if ($existingOrderDetail) {
-            // Jika produk sudah ada, tambahkan kuantitas
             $existingOrderDetail->quantity += $quantity;
             $existingOrderDetail->save();
         } else {
-            // Jika produk belum ada, tambahkan item ke order detail
             $orderDetail = $order->orderDetails()->create([
                 'product_id' => $productId,
                 'quantity' => $quantity,
@@ -53,14 +45,39 @@ class CartController extends Controller
             ]);
         }
 
-        // Hitung total harga order
         $totalPrice = $order->orderDetails()->sum(DB::raw('price * quantity'));
+
+        if ($totalPrice === null) {
+            $totalPrice = 0;
+        }
+
         $order->total_price = $totalPrice;
         $order->save();
 
         return response()->json([
             'message' => 'Product added to cart successfully!',
-            'order_detail_id' => $existingOrderDetail ? $existingOrderDetail->id : $orderDetail->id,
+            'order_detail_id' => $existingOrderDetail ? $existingOrderDetail->id : ($orderDetail->id ?? null),
         ]);
+    }
+    public function remove(Request $request)
+    {
+        $productId = $request->input('product_id');
+        $user = $request->user();
+
+        $order = $user->currentOrder;
+
+        $orderDetail = $order->orderDetails()->where('product_id', $productId)->first();
+
+        if ($orderDetail) {
+            $orderDetail->delete();
+
+            $totalPrice = $order->orderDetails()->sum(DB::raw('price * quantity'));
+            $order->total_price = $totalPrice;
+            $order->save();
+
+            return response()->json(['message' => 'Product removed from cart successfully!']);
+        }
+
+        return response()->json(['message' => 'Product not found in cart.'], 404);
     }
 }

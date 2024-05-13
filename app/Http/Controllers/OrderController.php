@@ -7,59 +7,22 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function checkout(Request $request)
     {
-        //
-    }
+        $user = $request->user();
+        $order = $user->currentOrder;
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        if ($order && $order->orderDetails->isNotEmpty()) {
+            $order->status = 'done';
+            $order->save();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            $newOrder = $user->orders()->create([
+                'status' => 'pending',
+            ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        //
-    }
+            return response()->json(['message' => 'Checkout success!']);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
-    {
-        //
+        return response()->json(['message' => 'Your cart is empty.'], 404);
     }
 }

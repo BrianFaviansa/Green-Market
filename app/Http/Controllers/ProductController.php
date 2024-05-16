@@ -12,7 +12,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $validateData = $request->validate([
             'product_name' => 'required',
             'category_id' => 'required',

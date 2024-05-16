@@ -41,9 +41,9 @@ class AuthController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'min:3'],
+            'name' => ['required|max:255'],
+            'email' => ['required|max:255|email:dns'],
+            'password' => ['required|min:3'],
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);

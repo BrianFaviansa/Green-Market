@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -49,6 +50,7 @@ class ProductController extends Controller
             $imageName = $request->input('product_name') . '_' . time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('product_images', $imageName, 'public');
             $validateData['product_image'] = $imageName;
+            Storage::disk('public')->delete('product_images/' . $product->product_image);
             $product->product_image = $imageName;
         } else {
             $validateData['product_image'] = $product->product_image;

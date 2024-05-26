@@ -17,7 +17,7 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'email' => 'required|email:dns',
-            'password' => 'required|min:5',
+            'password' => 'required|min:3',
         ]);
 
         if (Auth::attempt($validated)) {

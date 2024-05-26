@@ -89,9 +89,6 @@
             </script>
         @endif
 
-        {{-- Profile modal --}}
-        @include('dashboard.layouts.modal-profile')
-
         <!-- Logout Modal-->
         @include('dashboard.layouts.modal-logout')
 

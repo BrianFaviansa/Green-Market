@@ -38,7 +38,7 @@ class UserController extends Controller
         }
 
         if ($request->hasFile('photo') && $user->photo) {
-            Storage::disk('public')->delete('photos/' . $user->photo);
+            Storage::disk('public')->delete('storage/photos/' . $user->photo);
         }
 
         if ($request->hasFile('photo')) {
@@ -47,6 +47,8 @@ class UserController extends Controller
             $image->storeAs('photos', $imageName, 'public');
             $validatedData['photo'] = $imageName;
         }
+
+        $user->update($validatedData);
 
         if ($user->update($validatedData)) {
             return redirect()->back()->with('success_message', 'User updated successfully');

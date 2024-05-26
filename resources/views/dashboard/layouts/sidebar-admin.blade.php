@@ -13,18 +13,19 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active d-flex flex-row my-3 justify-content-center">
-        <img class="img-fluid img rounded-circle" style="height: 80px;"
-            @if ($user->photo) src="{{ asset('storage/photos/' . $user->photo) }}"
+        @if ($user->photo)
+            <img class="img-fluid img rounded-circle" src="{{ $user->photo }}" style="height: 80px;">
         @else
-            src="{{ asset('dashboard/img/undraw_profile.svg') }}"
-            alt=""> @endif
-            </li>
-        <p class="text-center text-white">Hello, {{ $user->name }}</p>
+            <img class="img-fluid img rounded-circle" src="{{ asset('dashboard/img/undraw_profile.svg') }}"
+                style="height: 80px;">
+        @endif
+    </li>
+    <p class="text-center text-white">Hello, {{ $user->name }}</p>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
-        <!-- Nav Item - Dashboard -->
+    <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-chart-line"></i>

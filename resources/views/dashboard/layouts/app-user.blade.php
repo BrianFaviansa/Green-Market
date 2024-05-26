@@ -71,9 +71,6 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-        {{-- Profile modal --}}
-        @include('dashboard.layouts.modal-profile')
-
         <!-- Logout Modal-->
         @include('dashboard.layouts.modal-logout')
 

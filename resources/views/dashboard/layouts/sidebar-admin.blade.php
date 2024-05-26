@@ -53,5 +53,11 @@
             <span>Orders</span>
         </a>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('admin.profile.edit', $user) }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </li>
 
 </ul>

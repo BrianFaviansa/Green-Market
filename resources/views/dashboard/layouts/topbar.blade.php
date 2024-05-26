@@ -18,11 +18,6 @@
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <button class="dropdown-item" data-bs-toggle="modal"
-                    data-bs-target="#editProfil{{ $user->id }}">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                </button>
                 <a class="dropdown-item" href="{{ route('landing') }}">
                     <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
                     Home
@@ -38,4 +33,3 @@
     </ul>
 
 </nav>
-

@@ -17,11 +17,14 @@ class Product extends Model
         'product_image',
     ];
 
-    public function getPriceAttribute($value)
+    public function getFormattedPriceAttribute($value)
     {
-        $value = (float) $value;
-        $isInteger = $value == floor($value);
-        return $isInteger ? (int) $value : $value;
+        return number_format($value, 2, ',', '.');
+    }
+
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = str_replace(['.', ','], ['', '.'], $value);
     }
 
     public function category() {

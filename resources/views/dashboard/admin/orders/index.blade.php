@@ -45,7 +45,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6">no order found</td>
+                        <td colspan="8">no order found</td>
                     </tr>
                 @endforelse
             </tbody>

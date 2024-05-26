@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('cart/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('checkout', [OrderController::class, 'checkout'])->name('checkout');
 
+    Route::get('dashboard/profile/{user:name}', [DashboardUserController::class, 'edit'])->name('user.profile.edit');
     Route::put('/user/update/{user}', [UserController::class, 'update'])->name('profile.update');
 });
 
@@ -66,4 +67,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('/dashboard/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
     Route::get('/dashboard/admin/orders', [DashboardAdminController::class, 'orders'])->name('admin.orders');
+
+    Route::get('/dashboard/admin/{user:name}', [DashboardAdminController::class, 'edit'])->name('admin.profile.edit');
 });

@@ -52,4 +52,9 @@ class DashboardAdminController extends Controller
 
         return view('dashboard.admin.orders.index', compact('user', 'orders'));
     }
+
+    public function edit(User $user)
+    {
+        return view('dashboard.admin.profile.edit', compact('user'));
+    }
 }

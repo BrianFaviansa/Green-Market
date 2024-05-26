@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
+    public function edit(User $user)
+    {
+        return view('user.edit', compact('user'));
+    }
+
     /**
      * Update the specified resource in storage.
      */

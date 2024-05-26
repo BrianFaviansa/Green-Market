@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        $validateData = $request->validate([
+        $validatedData = $request->validate([
             'product_name' => 'required',
             'category_id' => 'required',
             'price' => 'required|numeric',
@@ -25,9 +25,9 @@ class ProductController extends Controller
         $image = $request->file('product_image');
         $imageName = $request->input('product_name') . '_' . time() . '.' . $image->getClientOriginalExtension();
         $image->storeAs('product_images', $imageName, 'public');
-        $validateData['product_image'] = $imageName;
+        $validatedData['product_image'] = $imageName;
 
-        Product::create($validateData);
+        Product::create($validatedData);
 
         return redirect()->route('admin.products')->with('success', 'Product created successfully');
     }
@@ -37,7 +37,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $validateData = $request->validate([
+        $validatedData = $request->validate([
             'product_name' => 'required',
             'category_id' => 'required',
             'price' => 'required|numeric',
@@ -49,14 +49,14 @@ class ProductController extends Controller
             $image = $request->file('product_image');
             $imageName = $request->input('product_name') . '_' . time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('product_images', $imageName, 'public');
-            $validateData['product_image'] = $imageName;
+            $validatedData['product_image'] = $imageName;
             Storage::disk('public')->delete('product_images/' . $product->product_image);
             $product->product_image = $imageName;
         } else {
-            $validateData['product_image'] = $product->product_image;
+            $validatedData['product_image'] = $product->product_image;
         }
 
-        $product->update($validateData);
+        $product->update($validatedData);
 
         return redirect()->route('admin.products')->with('success', 'Product updated successfully');
     }

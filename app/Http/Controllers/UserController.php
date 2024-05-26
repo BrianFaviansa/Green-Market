@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -26,6 +27,7 @@ class UserController extends Controller
             'home_address' => 'required|max:255',
             'oldPassword' => 'nullable|min:3',
             'newPassword' => 'nullable|min:3',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,svg',
         ]);
 
         if ($validatedData['oldPassword'] && $validatedData['newPassword']) {
@@ -33,6 +35,17 @@ class UserController extends Controller
                 return back()->with('error_message', 'Old password wrong.');
             }
             $validatedData['password'] = Hash::make($request->newPassword);
+        }
+
+        if ($request->hasFile('photo') && $user->photo) {
+            Storage::disk('public')->delete('photos/' . $user->photo);
+        }
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $imageName = $request->input('photo') . '_' . time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('photos', $imageName, 'public');
+            $validatedData['photo'] = $imageName;
         }
 
         if ($user->update($validatedData)) {

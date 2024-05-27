@@ -47,7 +47,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('cart/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('checkout', [OrderController::class, 'checkout'])->name('checkout');
 
-    Route::get('dashboard/profile/{user:name}', [DashboardUserController::class, 'edit'])->name('user.profile.edit');
+    Route::get('dashboard/user/{user:name}', [DashboardUserController::class, 'edit'])->name('user.profile.edit');
+    Route::put('/dashboard/user/update/{user}', [UserController::class, 'updateUser'])->name('user.profile.update');
+
 });
 
 Route::group(['middleware' => 'admin'], function () {

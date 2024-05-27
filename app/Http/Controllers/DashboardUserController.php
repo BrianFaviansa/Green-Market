@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -28,5 +29,10 @@ class DashboardUserController extends Controller
         $order = $user->currentOrder;
 
         return view('dashboard.user.cart', compact('user', 'order'));
+    }
+
+    public function edit(User $user)
+    {
+        return view('dashboard.user.profile.edit', compact('user'));
     }
 }

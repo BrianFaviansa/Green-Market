@@ -13,7 +13,7 @@
     @endif
 
     <div class="mx-5">
-        <form action="{{ route('admin.profile.update', $user) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('user.profile.update', $user) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">

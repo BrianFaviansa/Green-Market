@@ -68,6 +68,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/dashboard/admin/orders', [DashboardAdminController::class, 'orders'])->name('admin.orders');
 
     Route::get('/dashboard/admin/{user:name}', [DashboardAdminController::class, 'edit'])->name('admin.profile.edit');
-    Route::put('/dashboard/admin/update/{user}', [UserController::class, 'update'])->name('admin.profile.update');
+    Route::put('/dashboard/admin/update/{user}', [UserController::class, 'updateAdmin'])->name('admin.profile.update');
 
 });

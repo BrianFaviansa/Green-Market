@@ -18,7 +18,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function updateAdmin(Request $request, User $user)
     {
         $validatedData = $request->validate([
             'name' => 'required|min:3|max:255',
@@ -37,23 +37,23 @@ class UserController extends Controller
             $validatedData['password'] = Hash::make($request->newPassword);
         }
 
-        if ($request->hasFile('photo') && $user->photo) {
-            Storage::disk('public')->delete('storage/photos/' . $user->photo);
-        }
-
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $imageName = $request->input('photo') . '_' . time() . '.' . $image->getClientOriginalExtension();
+            $imageName = $request->input('phoyo') . '_' . time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('photos', $imageName, 'public');
             $validatedData['photo'] = $imageName;
+            Storage::disk('public')->delete('photos/' . $user->photo);
+            $user->photo = $imageName;
+        } else {
+            $validatedData['photo'] = $user->photo;
         }
-
+        
         $user->update($validatedData);
 
         if ($user->update($validatedData)) {
-            return redirect()->back()->with('success_message', 'User updated successfully');
+            return redirect()->route('admin.profile.edit', $user)->with('success_message', 'User updated successfully');
         }
 
-        return redirect()->back()->with('error_message', 'User update failed');
+        return redirect()->route('admin.profile.edit', $user)->with('error_message', 'User update failed');
     }
 }

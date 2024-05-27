@@ -14,7 +14,7 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active d-flex flex-row my-3 justify-content-center">
         @if ($user->photo)
-            <img class="img-fluid img rounded-circle" src="{{ $user->photo }}" style="height: 80px;">
+            <img class="img-fluid img rounded-circle" src="{{ asset('storage/photos/'. $user->photo) }}" style="height: 80px;">
         @else
             <img class="img-fluid img rounded-circle" src="{{ asset('dashboard/img/undraw_profile.svg') }}"
                 style="height: 80px;">

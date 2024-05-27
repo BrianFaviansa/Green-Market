@@ -17,16 +17,6 @@ class Product extends Model
         'product_image',
     ];
 
-    public function getFormattedPriceAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
-
-    public function setPriceAttribute($value)
-    {
-        $this->attributes['price'] = str_replace(['.', ','], ['', '.'], $value);
-    }
-
     public function category() {
         return $this->belongsTo(Category::class);
     }

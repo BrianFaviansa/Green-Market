@@ -46,7 +46,7 @@
                         <td class="align-middle">{{ $product->product_name }}</td>
                         <td class="align-middle">{{ $product->product_desc }}</td>
                         <td class="align-middle">{{ $product->category->category_name }}</td>
-                        <td class="align-middle">{{ $product->price }}</td>
+                        <td class="align-middle">Rp {{ $product->price }}</td>
                         <td class="align-middle">
                             @include('dashboard.admin.products.modal-edit')
                             @include('dashboard.admin.products.modal-delete')

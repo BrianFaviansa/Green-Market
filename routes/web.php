@@ -60,6 +60,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/dashboard/admin/categories', [DashboardAdminController::class, 'categories'])->name('admin.categories');
     Route::post('/dashboard/admin/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
     Route::put('/dashboard/admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
+    Route::put('/dashboard/admin/categories/status/{category}', [CategoryController::class, 'status'])->name('admin.categories.status');
     Route::delete('/dashboard/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 
     Route::get('/dashboard/admin/products', [DashboardAdminController::class, 'products'])->name('admin.products');

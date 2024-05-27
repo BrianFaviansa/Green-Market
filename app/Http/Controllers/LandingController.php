@@ -11,7 +11,7 @@ class LandingController extends Controller
     public function index() {
 
         $products = Product::with('category')->get();
-        $categories = Category::all();
+        $categories = Category::where('status', 'Active')->get();
 
         return view('landing.index', compact('products', 'categories'));
     }

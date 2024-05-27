@@ -1,11 +1,20 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategory{{ $category->id }}">
-    Delete
-</button>
+@if ($category->products()->count() > 0)
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategory{{ $category->id }}"
+        disabled>
+        Delete
+    </button>
+@else
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+        data-bs-target="#deleteCategory{{ $category->id }}">
+        Delete </button>
+@endif
+
 
 
 <!-- Modal -->
-<div class="modal fade" id="deleteCategory{{ $category->id }}" tabindex="-1" aria-labelledby="deleteCategoryLabel{{ $category->id }}" aria-hidden="true">
+<div class="modal fade" id="deleteCategory{{ $category->id }}" tabindex="-1"
+    aria-labelledby="deleteCategoryLabel{{ $category->id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

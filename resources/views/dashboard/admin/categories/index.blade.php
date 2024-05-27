@@ -21,6 +21,7 @@
                 <tr>
                     <th scope="col">Number</th>
                     <th scope="col">Category Name</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -29,9 +30,11 @@
                     <tr>
                         <th class="" scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $category->category_name }}</td>
+                        <td>{{ $category->status }}</td>
                         <td>
                             @include('dashboard.admin.categories.modal-edit')
                             @include('dashboard.admin.categories.modal-delete')
+                            @include('dashboard.admin.categories.modal-nonactive')
                         </td>
                     </tr>
                 @endforeach

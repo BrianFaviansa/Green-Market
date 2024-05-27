@@ -44,4 +44,17 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.categories')->with('success', 'Category deleted successfully!');
     }
+
+    public function status(Category $category)
+    {
+        if($category->status == 'Active') {
+            $category->status = 'Inactive';
+        } else {
+            $category->status = 'Active';
+        }
+
+        $category->save();
+
+        return redirect()->route('admin.categories')->with('success', 'Category status updated successfully!');
+    }
 }

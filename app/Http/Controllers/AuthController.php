@@ -17,7 +17,7 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'email' => 'required|email:dns',
-            'password' => 'required|min:3',
+            'password' => 'required',
         ]);
 
         if (Auth::attempt($validated)) {
@@ -41,9 +41,9 @@ class AuthController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['required|max:255'],
-            'email' => ['required|max:255|email:dns'],
-            'password' => ['required|min:3'],
+            'name' => 'required|min:3',
+            'email' => 'required|min:3|email:dns',
+            'password' => 'required|min:3',
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);

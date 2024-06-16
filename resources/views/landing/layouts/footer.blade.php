@@ -2,7 +2,7 @@
 
     <div class="container">
         <div class="row gy-3">
-            <div class="col-lg-3 col-md-6 d-flex">
+            <div class="col-lg-5 col-md-6 d-flex">
                 <i class="bi bi-geo-alt icon"></i>
                 <div>
                     <h4>Address</h4>
@@ -14,7 +14,7 @@
 
             </div>
 
-            <div class="col-lg-3 col-md-6 footer-links d-flex">
+            <div class="col-lg-5 col-md-6 footer-links d-flex">
                 <i class="bi bi-telephone icon"></i>
                 <div>
                     <h4>Contact us</h4>
@@ -25,18 +25,7 @@
                 </div>
             </div>
 
-            {{-- <div class="col-lg-3 col-md-6 footer-links d-flex">
-                <i class="bi bi-clock icon"></i>
-                <div>
-                    <h4>Opening Hours</h4>
-                    <p>
-                        <strong>Mon-Sat: 11AM</strong> - 23PM<br>
-                        Sunday: Closed
-                    </p>
-                </div>
-            </div> --}}
-
-            <div class="col-lg-3 col-md-6 footer-links">
+            <div class="col-lg-2 col-md-6 footer-links">
                 <h4>Follow Us</h4>
                 <div class="social-links d-flex">
                     <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>

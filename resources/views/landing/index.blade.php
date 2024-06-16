@@ -9,6 +9,8 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
+
+
     {{-- bootstrap cdn --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -39,7 +41,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
-
+    <link rel="shortcut icon" href="{{ asset("favicon.ico") }}" type="image/x-icon">
 </head>
 
 <body>
@@ -63,7 +65,7 @@
         <!-- End Why Us Section -->
 
         <!-- ======= Stats Counter Section ======= -->
-        @include('landing.layouts.stats')
+        {{-- @include('landing.layouts.stats') --}}
         <!-- End Stats Counter Section -->
 
         <!-- ======= Menu Section ======= -->

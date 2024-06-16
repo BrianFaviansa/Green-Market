@@ -8,9 +8,9 @@
 
         <div class="row gy-4">
             <div class="col-lg-7 position-relative about-img"
-                style="background-image: url({{ asset('landing/assets/img/about.jpg') }}) ;" data-aos="fade-up" data-aos-delay="150">
+                data-aos="fade-up" data-aos-delay="150">
                 <div class="call-us position-absolute">
-                    <h4>Book a Table</h4>
+                    <h4>Contact Us</h4>
                     <p>+1 5589 55488 55</p>
                 </div>
             </div>
@@ -30,7 +30,7 @@
 
                     <div class="position-relative mt-4">
                         <img src="{{ asset('landing/assets/img/about-2.jpg') }}" class="img-fluid" alt="">
-                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
+                        {{-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a> --}}
                     </div>
                 </div>
             </div>
